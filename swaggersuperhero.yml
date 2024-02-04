@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: SuperHero API
+  description: SuperHero API by Bharat Mishra.
+  contact:
+    name: Bharat Mishra
+    url: http://bhanu.lol
+  version: 0.0.1
+servers:
+  - url: http://devapi.com
+  - url: http://prodapi.com
+paths:
+  /superhero:
+    description: Super Resource
+    get: 
+      description: Operation to fetch SuperHero
+      parameters:
+      - in: query
+        name: supername
+        required: true
+        schema:
+          type: string
+          example: Batman
+      responses:
+        200:
+          description: Success Response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/students"
+    post:
+      description: Add a new student
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/student"
+              
+      responses:
+        201:
+          description: Record Successfully added.
+           
+  /superhero{id}:
+    description: Get SuperHero by ID
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            
+      description: Your requested SuperHero
+      responses:
+        200:
+          description: Here you go.
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/students"
+                  
+                  
+components:
+  schemas:
+    student:
+      type: object
+      properties:
+        SuperID:
+          type: integer
+          example: 3
+        SuperName:
+          type: string
+          example: Catwoman
+        SuperPower:
+          type: string
+          example: Scratch
+      
+    students:
+      type: array
+      items:
+        properties:
+            SuperID:
+              type: integer
+              example: 3
+            SuperName:
+              type: string
+              example: Catwoman
+            SuperPower:
+              type: string
+              example: Scratch
+                      
+
